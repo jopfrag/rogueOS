@@ -3,7 +3,18 @@ FROM quay.io/fedora-ostree-desktops/silverblue:38
 ADD usr /usr
 ADD etc /etc
 
+RUN wget https://downloads.1password.com/linux/keys/1password.asc -O /etc/pki/rpm-gpg/1password.asc
+
+RUN rpm-ostree override remove \
+    firefox-langpacks \
+    firefox \
+    toolbox
+
 RUN rpm-ostree install \
+    1password-cli
+
+RUN rpm-ostree install \
+    alacritty \
     bat \
     buildah \
     distrobox \
@@ -16,9 +27,7 @@ RUN rpm-ostree install \
     skopeo \
     ripgrep \
     tio \
-    zsh && \
-    rm -rf /tmp/* /var/* && \
-    ostree container commit
+    zsh
 
 RUN systemctl enable rpm-ostreed-automatic.timer
 RUN systemctl enable flatpak-system-update.timer
