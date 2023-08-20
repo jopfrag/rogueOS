@@ -1,6 +1,7 @@
 FROM quay.io/fedora-ostree-desktops/silverblue:38
 
 ADD usr /usr
+ADD etc /etc
 
 RUN rpm-ostree install \
     bat \
