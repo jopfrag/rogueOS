@@ -52,7 +52,7 @@ jobs:
       - name: Gather image data from recipe
         run: |
           echo "IMAGE_NAME=rogueos" >> $GITHUB_ENV
-          echo "IMAGE_DESCRIPTION="personal image"" >> $GITHUB_ENV
+          echo "IMAGE_DESCRIPTION='personal image'" >> $GITHUB_ENV
           echo "FEDORA_MAJOR_VERSION=38" >> $GITHUB_ENV
           echo "BASE_IMAGE_URL=silverblue" >> $GITHUB_ENV
 
