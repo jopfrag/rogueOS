@@ -11,7 +11,8 @@ RUN rpm-ostree override remove \
     toolbox
 
 RUN rpm-ostree install \
-    1password-cli
+    1password-cli \
+    1password
 
 RUN rpm-ostree install \
     alacritty \
