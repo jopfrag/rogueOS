@@ -15,11 +15,7 @@ RUN rpm-ostree install \
     buildah \
     distrobox \
     gnome-tweaks \
-    numix-icon-theme-circle \
-    podman-compose \
-    podman-docker \
-    podman-plugins \
-    podman
+    numix-icon-theme-circle
 
 RUN systemctl enable rpm-ostreed-automatic.timer
 RUN systemctl enable flatpak-system-update.timer
