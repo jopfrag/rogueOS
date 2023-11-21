@@ -1,7 +1,5 @@
 FROM quay.io/fedora-ostree-desktops/silverblue:39
 
-COPY rootfs/ /
-
 RUN rpm-ostree override remove \
     firefox \
     firefox-langpacks \
