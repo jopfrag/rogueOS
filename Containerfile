@@ -1,4 +1,4 @@
-FROM quay.io/fedora-ostree-desktops/silverblue:38
+FROM quay.io/fedora-ostree-desktops/silverblue:39
 
 ADD usr /usr
 ADD etc /etc
