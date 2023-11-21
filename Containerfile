@@ -7,16 +7,16 @@ RUN rpm-ostree override remove \
 
 RUN rpm-ostree install \
     alacritty \
-    adw-gtk3-theme \
+    # adw-gtk3-theme \
     breeze-cursor-theme \
     buildah \
     distrobox \
     gnome-tweaks \
     numix-icon-theme-circle
 
-RUN systemctl enable rpm-ostreed-automatic.timer
-RUN systemctl enable flatpak-system-update.timer
-RUN systemctl --global enable flatpak-user-update.timer
+# RUN systemctl enable rpm-ostreed-automatic.timer
+# RUN systemctl enable flatpak-system-update.timer
+# RUN systemctl --global enable flatpak-user-update.timer
 
 RUN rm -rf /tmp/* /var/*
 RUN ostree container commit
