@@ -22,6 +22,7 @@ RUN rpm-ostree install \
     evince \
     gnome-boxes \
     gnome-calculator \
+    gnome-firmware \
     gnome-shell-extension-pop-shell \
     gnome-shell-extension-user-theme \
     gnome-shell-extension-launch-new-instance \
@@ -31,6 +32,25 @@ RUN rpm-ostree install \
     gnome-tweaks \
     gnome-disk-utility \
     loupe
+
+RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
+RUN rpm-ostree install \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    docker-buildx-plugin \
+    docker-compose-plugin
+
+RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+RUN rpm-ostree install \
+    tailscale
+
+RUN curl -o opensnitch-1.6.2-1.x86_64.rpm https://github.com/evilsocket/opensnitch/releases/download/v1.6.2/opensnitch-1.6.2-1.x86_64.rpm
+RUN curl -o opensnitch-ui-1.6.4-1.noarch.rpm https://github.com/evilsocket/opensnitch/releases/download/v1.6.4/opensnitch-ui-1.6.4-1.noarch.rpm
+RUN rpm-ostree install \
+    opensnitch-1.6.2-1.x86_64.rpm \
+    opensnitch-ui-1.6.4-1.noarch.rpm
+RUN opensnitch-1.6.2-1.x86_64.rpm opensnitch-ui-1.6.4-1.noarch.rpm
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
