@@ -45,11 +45,12 @@ RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fe
 RUN rpm-ostree install \
     tailscale
 
-RUN curl -o opensnitch-1.6.2-1.x86_64.rpm https://github.com/evilsocket/opensnitch/releases/download/v1.6.2/opensnitch-1.6.2-1.x86_64.rpm
-RUN curl -o opensnitch-ui-1.6.4-1.noarch.rpm https://github.com/evilsocket/opensnitch/releases/download/v1.6.4/opensnitch-ui-1.6.4-1.noarch.rpm
-RUN rpm-ostree install \
-    opensnitch-1.6.2-1.x86_64.rpm \
-    opensnitch-ui-1.6.4-1.noarch.rpm
+# RUN curl -o opensnitch-1.6.2-1.x86_64.rpm https://github.com/evilsocket/opensnitch/releases/download/v1.6.2/opensnitch-1.6.2-1.x86_64.rpm
+# RUN curl -o opensnitch-ui-1.6.4-1.noarch.rpm https://github.com/evilsocket/opensnitch/releases/download/v1.6.4/opensnitch-ui-1.6.4-1.noarch.rpm
+# RUN rpm-ostree install \
+#     opensnitch-1.6.2-1.x86_64.rpm \
+#     opensnitch-ui-1.6.4-1.noarch.rpm
+
 RUN opensnitch-1.6.2-1.x86_64.rpm opensnitch-ui-1.6.4-1.noarch.rpm
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
