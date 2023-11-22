@@ -23,6 +23,7 @@ RUN rpm-ostree install \
     gnome-boxes \
     gnome-calculator \
     gnome-firmware \
+    gnome-shell-extension-appindicator \
     gnome-shell-extension-pop-shell \
     gnome-shell-extension-user-theme \
     gnome-shell-extension-launch-new-instance \
@@ -40,10 +41,21 @@ RUN rpm-ostree install \
     containerd.io \
     docker-buildx-plugin \
     docker-compose-plugin
+RUN systemctl enable docker
 
 RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 RUN rpm-ostree install \
     tailscale
+
+RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.2/opensnitch-1.6.2-1.x86_64.rpm
+RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.4/opensnitch-ui-1.6.4-1.noarch.rpm
+RUN rpm-ostree install \
+    opensnitch-1.6.2-1.x86_64.rpm \
+    opensnitch-ui-1.6.4-1.noarch.rpm
+RUN rm \
+    opensnitch-1.6.2-1.x86_64.rpm \
+    opensnitch-ui-1.6.4-1.noarch.rpm
+RUN systemctl enable opensnitchd
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
