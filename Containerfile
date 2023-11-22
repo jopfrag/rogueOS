@@ -21,6 +21,7 @@ RUN rpm-ostree install \
 RUN rpm-ostree install \
     evince \
     gnome-boxes \
+    gnome-calculator \
     gnome-shell-extension-pop-shell \
     gnome-shell-extension-user-theme \
     gnome-shell-extension-launch-new-instance \
