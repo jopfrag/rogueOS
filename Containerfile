@@ -8,9 +8,6 @@ RUN rpm-ostree override remove \
     gnome-terminal-nautilus \
     gnome-tour \
     gnome-shell-extension-background-logo \
-    gnome-shell-extension-window-list \
-    gnome-shell-extension-apps-menu \
-    gnome-shell-extension-places-menu \
     toolbox \
     yelp
 
