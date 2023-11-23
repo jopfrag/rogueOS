@@ -3,7 +3,6 @@ FROM quay.io/fedora-ostree-desktops/silverblue:39
 RUN rpm-ostree override remove \
     firefox \
     firefox-langpacks \
-    firewalld \
     gnome-system-monitor \
     gnome-terminal \
     gnome-terminal-nautilus \
