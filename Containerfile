@@ -15,8 +15,11 @@ RUN rpm-ostree install \
     alacritty \
     breeze-cursor-theme \
     distrobox \
+    fira-code-fonts \
+    google-noto-color-emoji-fonts \
     numix-icon-theme-circle \
-    nvme-cli 
+    nvme-cli \
+    onedrive
 
 RUN rpm-ostree install \
     evince \
