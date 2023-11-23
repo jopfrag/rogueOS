@@ -32,7 +32,8 @@ RUN rpm-ostree install \
     gnome-shell-extension-blur-my-shell \
     gnome-tweaks \
     gnome-disk-utility \
-    loupe
+    loupe \
+    snapshot
 
 RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
 RUN rpm-ostree install \
