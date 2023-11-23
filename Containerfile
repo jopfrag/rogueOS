@@ -56,7 +56,6 @@ RUN rpm-ostree install \
 RUN rm \
     opensnitch-1.6.2-1.x86_64.rpm \
     opensnitch-ui-1.6.4-1.noarch.rpm
-RUN systemctl enable opensnitchd
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
