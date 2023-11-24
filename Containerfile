@@ -61,6 +61,10 @@ RUN rm \
     opensnitch-ui-1.6.4-1.noarch.rpm
 RUN systemctl enable opensnitch
 
+RUN git clone https://github.com/Vladimir-csp/xdg-terminal-exec
+RUN mv xdg-terminal-exec/xdg-terminal-exec /usr/bin/xdg-terminal-exec
+RUN rm -r xdg-terminal-exec
+
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
 
