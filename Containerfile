@@ -23,6 +23,7 @@ RUN rpm-ostree install \
 
 RUN rpm-ostree install \
     evince \
+    evolution-ews \
     gnome-boxes \
     gnome-calculator \
     gnome-firmware \
