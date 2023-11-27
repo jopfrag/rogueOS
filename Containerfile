@@ -59,6 +59,7 @@ RUN rpm-ostree install \
     onedrive
 
 RUN rpm-ostree install \
+    dconf-editor \
     evince \
     evolution-ews \
     gnome-boxes \
