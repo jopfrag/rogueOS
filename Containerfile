@@ -37,6 +37,7 @@ RUN rpm-ostree install \
     gnome-tweaks \
     gnome-disk-utility \
     loupe \
+    nm-connection-editor-desktop \
     snapshot
 
 RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
@@ -65,6 +66,10 @@ RUN systemctl enable opensnitch
 RUN git clone https://github.com/Vladimir-csp/xdg-terminal-exec
 RUN mv xdg-terminal-exec/xdg-terminal-exec /usr/bin/xdg-terminal-exec
 RUN rm -r xdg-terminal-exec
+
+RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
+RUN rpm-ostree install \
+    code
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
