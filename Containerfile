@@ -69,7 +69,7 @@ RUN rm -r xdg-terminal-exec
 
 RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 RUN rpm-ostree install \
-    code
+    code-insiders
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
