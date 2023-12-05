@@ -108,7 +108,7 @@ RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/v
 RUN rpm-ostree install \
     code
 
-RUN wget wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 RUN rpm-ostree install \
     google-chrome-stable_current_x86_64.rpm
 RUN rm \
