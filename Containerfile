@@ -1,41 +1,41 @@
 FROM quay.io/fedora-ostree-desktops/silverblue:39
 
-RUN wget https://copr.fedorainfracloud.org/coprs/kylegospo/gnome-vrr/repo/fedora-$(rpm -E %fedora)/kylegospo-gnome-vrr-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo
-RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:kylegospo:gnome-vrr \
-    mutter \
-    mutter-common \
-    gnome-control-center \
-    gnome-control-center-filesystem
+# RUN wget https://copr.fedorainfracloud.org/coprs/kylegospo/gnome-vrr/repo/fedora-$(rpm -E %fedora)/kylegospo-gnome-vrr-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo
+# RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:kylegospo:gnome-vrr \
+#     mutter \
+#     mutter-common \
+#     gnome-control-center \
+#     gnome-control-center-filesystem
 
-RUN rpm-ostree install \
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-RUN rpm-ostree install \
-    rpmfusion-free-release \
-    rpmfusion-nonfree-release \
-    --uninstall rpmfusion-free-release \
-    --uninstall rpmfusion-nonfree-release
-RUN rpm-ostree install \
-    intel-media-driver \
-    libva-intel-driver
-RUN rpm-ostree override \
-    remove mesa-va-drivers \
-    --install=mesa-va-drivers-freeworld \
-    --install=mesa-vdpau-drivers-freeworld
-RUN rpm-ostree override remove \
-    libavfilter-free \
-    libavformat-free \
-    libavcodec-free \
-    libavutil-free \
-    libpostproc-free \
-    libswresample-free \
-    libswscale-free \
-    --install=ffmpeg
-RUN rpm-ostree install \
-    gstreamer1-plugin-libav \
-    gstreamer1-plugins-bad-free-extras \
-    gstreamer1-plugins-ugly \
-    gstreamer1-vaapi
+# RUN rpm-ostree install \
+#     https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+#     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+# RUN rpm-ostree install \
+#     rpmfusion-free-release \
+#     rpmfusion-nonfree-release \
+#     --uninstall rpmfusion-free-release \
+#     --uninstall rpmfusion-nonfree-release
+# RUN rpm-ostree install \
+#     intel-media-driver \
+#     libva-intel-driver
+# RUN rpm-ostree override \
+#     remove mesa-va-drivers \
+#     --install=mesa-va-drivers-freeworld \
+#     --install=mesa-vdpau-drivers-freeworld
+# RUN rpm-ostree override remove \
+#     libavfilter-free \
+#     libavformat-free \
+#     libavcodec-free \
+#     libavutil-free \
+#     libpostproc-free \
+#     libswresample-free \
+#     libswscale-free \
+#     --install=ffmpeg
+# RUN rpm-ostree install \
+#     gstreamer1-plugin-libav \
+#     gstreamer1-plugins-bad-free-extras \
+#     gstreamer1-plugins-ugly \
+#     gstreamer1-vaapi
 
 RUN rpm-ostree override remove \
     firefox \
@@ -61,7 +61,6 @@ RUN rpm-ostree install \
 RUN rpm-ostree install \
     dconf-editor \
     evince \
-    evolution-ews \
     gnome-boxes \
     gnome-calculator \
     gnome-firmware \
@@ -107,7 +106,13 @@ RUN rm -r xdg-terminal-exec
 
 RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 RUN rpm-ostree install \
-    code-insiders
+    code
+
+RUN wget wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN rpm-ostree install \
+    google-chrome-stable_current_x86_64.rpm
+RUN rm \
+    google-chrome-stable_current_x86_64.rpm
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
