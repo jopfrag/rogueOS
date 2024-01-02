@@ -56,7 +56,8 @@ RUN rpm-ostree install \
     google-noto-color-emoji-fonts \
     numix-icon-theme-circle \
     nvme-cli \
-    onedrive
+    onedrive \
+    waydroid
 
 RUN rpm-ostree install \
     dconf-editor \
