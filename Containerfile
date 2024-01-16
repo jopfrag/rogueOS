@@ -107,7 +107,7 @@ RUN rm -r xdg-terminal-exec
 
 RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.43/AdGuardHome_linux_amd64.tar.gz
 RUN tar -xf AdGuardHome_linux_amd64.tar.gz
-RUN mv AdGuardHome/AdGuardHome /usr/local/bin/AdGuardHome
+RUN mv AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 RUN AdGuardHome -s install
 RUN rm -r -f AdGuardHome_linux_amd64.tar.gz
 RUN rm -r -f AdGuardHome
