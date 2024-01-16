@@ -105,6 +105,8 @@ RUN git clone https://github.com/Vladimir-csp/xdg-terminal-exec
 RUN mv xdg-terminal-exec/xdg-terminal-exec /usr/bin/xdg-terminal-exec
 RUN rm -r xdg-terminal-exec
 
+RUN curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
+
 # RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 # RUN rpm-ostree install \
 #     code
