@@ -107,10 +107,10 @@ RUN rm -r xdg-terminal-exec
 
 RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.43/AdGuardHome_linux_amd64.tar.gz
 RUN tar -xf AdGuardHome_linux_amd64.tar.gz
-RUN mv AdguardHome/AdguardHome /usr/local/bin/AdguardHome
+RUN mv AdGuardHome/AdGuardHome /usr/local/bin/AdGuardHome
 RUN AdGuardHome -s install
 RUN rm -r -f AdGuardHome_linux_amd64.tar.gz
-RUN rm -r -f AdguardHome
+RUN rm -r -f AdGuardHome
 
 # RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 # RUN rpm-ostree install \
