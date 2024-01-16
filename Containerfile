@@ -105,7 +105,12 @@ RUN git clone https://github.com/Vladimir-csp/xdg-terminal-exec
 RUN mv xdg-terminal-exec/xdg-terminal-exec /usr/bin/xdg-terminal-exec
 RUN rm -r xdg-terminal-exec
 
-RUN curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
+RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.43/AdGuardHome_linux_amd64.tar.gz
+RUN tar -xf AdGuardHome_linux_amd64.tar.gz
+RUN mv AdguardHome/AdguardHome /usr/local/bin/AdguardHome
+RUN AdGuardHome -s install
+RUN rm -r -f AdGuardHome_linux_amd64.tar.gz
+RUN rm -r -f AdguardHome
 
 # RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 # RUN rpm-ostree install \
