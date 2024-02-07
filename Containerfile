@@ -55,9 +55,7 @@ RUN rpm-ostree install \
     fira-code-fonts \
     google-noto-color-emoji-fonts \
     numix-icon-theme-circle \
-    nvme-cli \
-    onedrive \
-    waydroid
+    nvme-cli
 
 RUN rpm-ostree install \
     dconf-editor \
@@ -105,7 +103,7 @@ RUN git clone https://github.com/Vladimir-csp/xdg-terminal-exec
 RUN mv xdg-terminal-exec/xdg-terminal-exec /usr/bin/xdg-terminal-exec
 RUN rm -r xdg-terminal-exec
 
-RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.43/AdGuardHome_linux_amd64.tar.gz
+RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.44/AdGuardHome_linux_amd64.tar.gz
 RUN tar -xf AdGuardHome_linux_amd64.tar.gz
 RUN mv AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
 RUN rm -r -f AdGuardHome_linux_amd64.tar.gz
