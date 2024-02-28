@@ -26,14 +26,14 @@ RUN rpm-ostree install \
     nm-connection-editor-desktop \
     snapshot
 
-RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
-RUN rpm-ostree install \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-buildx-plugin \
-    docker-compose-plugin
-RUN systemctl enable docker
+# RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
+# RUN rpm-ostree install \
+#     docker-ce \
+#     docker-ce-cli \
+#     containerd.io \
+#     docker-buildx-plugin \
+#     docker-compose-plugin
+# RUN systemctl enable docker
 
 RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 RUN rpm-ostree install \
