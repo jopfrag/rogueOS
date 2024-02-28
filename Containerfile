@@ -62,9 +62,6 @@ RUN rpm-ostree install \
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
 
-RUN sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf
-RUN sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf
-
 RUN rm -rf /tmp/* /var/*
 RUN rpm-ostree cleanup -m
 RUN ostree container commit
