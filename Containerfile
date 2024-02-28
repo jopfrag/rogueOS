@@ -1,49 +1,9 @@
-FROM quay.io/fedora-ostree-desktops/silverblue:39
-
-RUN wget https://copr.fedorainfracloud.org/eliasofwaffle/mutter-dynamic-triplebuffer/repo/fedora-$(rpm -E %fedora)/eliasofwaffle-mutter-dynamic-triplebuffer-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_eliasofwaffle-mutter-dynamic-triplebuffer.repo
-RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:eliasofwaffle:mutter-dynamic-triplebuffer \
-     mutter
-
-# RUN rpm-ostree install \
-#     https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-#     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-# RUN rpm-ostree install \
-#     rpmfusion-free-release \
-#     rpmfusion-nonfree-release \
-#     --uninstall rpmfusion-free-release \
-#     --uninstall rpmfusion-nonfree-release
-# RUN rpm-ostree install \
-#     intel-media-driver \
-#     libva-intel-driver
-# RUN rpm-ostree override \
-#     remove mesa-va-drivers \
-#     --install=mesa-va-drivers-freeworld \
-#     --install=mesa-vdpau-drivers-freeworld
-# RUN rpm-ostree override remove \
-#     libavfilter-free \
-#     libavformat-free \
-#     libavcodec-free \
-#     libavutil-free \
-#     libpostproc-free \
-#     libswresample-free \
-#     libswscale-free \
-#     --install=ffmpeg
-# RUN rpm-ostree install \
-#     gstreamer1-plugin-libav \
-#     gstreamer1-plugins-bad-free-extras \
-#     gstreamer1-plugins-ugly \
-#     gstreamer1-vaapi
+FROM quay.io/fedora-ostree-desktops/sericea:40
 
 RUN rpm-ostree override remove \
     firefox \
     firefox-langpacks \
-    gnome-system-monitor \
-    gnome-terminal \
-    gnome-terminal-nautilus \
-    gnome-tour \
-    gnome-shell-extension-background-logo \
     toolbox \
-    yelp
 
 RUN rpm-ostree install \
     alacritty \
@@ -51,6 +11,7 @@ RUN rpm-ostree install \
     distrobox \
     fira-code-fonts \
     google-noto-color-emoji-fonts \
+    nautilus \
     numix-icon-theme-circle \
     nvme-cli
 
@@ -60,14 +21,6 @@ RUN rpm-ostree install \
     gnome-boxes \
     gnome-calculator \
     gnome-firmware \
-    gnome-shell-extension-appindicator \
-    gnome-shell-extension-pop-shell \
-    gnome-shell-extension-user-theme \
-    gnome-shell-extension-launch-new-instance \
-    gnome-shell-extension-just-perfection \
-    gnome-shell-extension-caffeine \
-    gnome-shell-extension-blur-my-shell \
-    gnome-tweaks \
     gnome-disk-utility \
     loupe \
     nm-connection-editor-desktop \
@@ -96,25 +49,15 @@ RUN rm \
     opensnitch-ui-1.6.4-1.noarch.rpm
 RUN systemctl enable opensnitch
 
-RUN git clone https://github.com/Vladimir-csp/xdg-terminal-exec
-RUN mv xdg-terminal-exec/xdg-terminal-exec /usr/bin/xdg-terminal-exec
-RUN rm -r xdg-terminal-exec
+RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
+RUN rpm-ostree install \
+    code
 
-RUN wget https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.107.44/AdGuardHome_linux_amd64.tar.gz
-RUN tar -xf AdGuardHome_linux_amd64.tar.gz
-RUN mv AdGuardHome/AdGuardHome /usr/bin/AdGuardHome
-RUN rm -r -f AdGuardHome_linux_amd64.tar.gz
-RUN rm -r -f AdGuardHome
-
-# RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
-# RUN rpm-ostree install \
-#     code
-
-# RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-# RUN rpm-ostree install \
-#     google-chrome-stable_current_x86_64.rpm
-# RUN rm \
-#     google-chrome-stable_current_x86_64.rpm
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN rpm-ostree install \
+    google-chrome-stable_current_x86_64.rpm
+RUN rm \
+    google-chrome-stable_current_x86_64.rpm
 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
 RUN systemctl enable rpm-ostreed-automatic.timer
