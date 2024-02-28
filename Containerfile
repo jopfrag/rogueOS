@@ -13,7 +13,8 @@ RUN rpm-ostree install \
     google-noto-color-emoji-fonts \
     nautilus \
     numix-icon-theme-circle \
-    nvme-cli
+    nvme-cli \
+    gh
 
 RUN rpm-ostree install \
     dconf-editor \
