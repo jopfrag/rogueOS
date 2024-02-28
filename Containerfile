@@ -1,4 +1,4 @@
-FROM quay.io/fedora-ostree-desktops/sericea:40
+FROM quay.io/fedora-ostree-desktops/sericea:39
 
 RUN rpm-ostree override remove \
     firefox \
@@ -9,12 +9,9 @@ RUN rpm-ostree install \
     alacritty \
     breeze-cursor-theme \
     distrobox \
-    fira-code-fonts \
-    google-noto-color-emoji-fonts \
-    nautilus \
+    gh \
     numix-icon-theme-circle \
-    nvme-cli \
-    gh
+    nvme-cli
 
 RUN rpm-ostree install \
     dconf-editor \
@@ -24,17 +21,17 @@ RUN rpm-ostree install \
     gnome-firmware \
     gnome-disk-utility \
     loupe \
-    nm-connection-editor-desktop \
+    nautilus \
     snapshot
 
-# RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
-# RUN rpm-ostree install \
-#     docker-ce \
-#     docker-ce-cli \
-#     containerd.io \
-#     docker-buildx-plugin \
-#     docker-compose-plugin
-# RUN systemctl enable docker
+RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
+RUN rpm-ostree install \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    docker-buildx-plugin \
+    docker-compose-plugin
+RUN systemctl enable docker
 
 RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 RUN rpm-ostree install \
@@ -54,14 +51,11 @@ RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/v
 RUN rpm-ostree install \
     code
 
-# RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-# RUN rpm-ostree install \
-#     google-chrome-stable_current_x86_64.rpm
-# RUN rm \
-#     google-chrome-stable_current_x86_64.rpm
-
-RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=check/' /etc/rpm-ostreed.conf
-RUN systemctl enable rpm-ostreed-automatic.timer
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN rpm-ostree install \
+    google-chrome-stable_current_x86_64.rpm
+RUN rm \
+    google-chrome-stable_current_x86_64.rpm
 
 RUN rm -rf /tmp/* /var/*
 RUN rpm-ostree cleanup -m
