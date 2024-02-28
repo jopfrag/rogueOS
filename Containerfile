@@ -3,7 +3,7 @@ FROM quay.io/fedora-ostree-desktops/sericea:40
 RUN rpm-ostree override remove \
     firefox \
     firefox-langpacks \
-    toolbox \
+    toolbox
 
 RUN rpm-ostree install \
     alacritty \
