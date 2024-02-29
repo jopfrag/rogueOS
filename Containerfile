@@ -5,24 +5,49 @@ RUN rpm-ostree override remove \
     firefox-langpacks \
     toolbox
 
+RUN rpm-ostree override remove \
+    NetworkManager \
+    network-manager-applet \
+    NetworkManager-wwan \
+    NetworkManager-bluetooth \
+    NetworkManager-wifi \
+    NetworkManager-sstp \
+    NetworkManager-sstp-gnome \
+    NetworkManager-vpnc \
+    NetworkManager-vpnc-gnome \
+    NetworkManager-pptp \
+    NetworkManager-pptp-gnome \
+    NetworkManager-openvpn \
+    NetworkManager-openvpn-gnome \
+    NetworkManager-openconnect \
+    NetworkManager-openconnect-gnome \
+    NetworkManager-libreswan \
+    NetworkManager-libreswan-gnome \
+    Networkmanager-l2pt \
+    NetworkManager-l2tp-gnome
+
 RUN rpm-ostree install \
     alacritty \
     breeze-cursor-theme \
     distrobox \
+    iwd \
     gh \
     numix-icon-theme-circle \
-    nvme-cli
+    nvme-cli 
 
 RUN rpm-ostree install \
     dconf-editor \
     evince \
     gnome-boxes \
     gnome-calculator \
-    gnome-firmware \
     gnome-disk-utility \
     loupe \
     nautilus \
-    snapshot
+    helix \
+    ripgrep \
+    bat \
+    eza \
+    zsh
 
 RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
 RUN rpm-ostree install \
@@ -51,11 +76,14 @@ RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/v
 RUN rpm-ostree install \
     code
 
-# RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-# RUN rpm-ostree install \
-#     google-chrome-stable_current_x86_64.rpm
-# RUN rm \
-#     google-chrome-stable_current_x86_64.rpm
+RUN curl -o /etc/yum.repos.d/starship.repo https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-39/atim-starship-fedora-39.repo
+RUN rpm-ostree install \
+    starship
+
+RUN systemctl enable systemd-networkd
+RUN systemctl enable iwd
+
+COPY root/ /
 
 RUN rm -rf /tmp/* /var/*
 RUN rpm-ostree cleanup -m
