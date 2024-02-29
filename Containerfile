@@ -80,6 +80,10 @@ RUN curl -o /etc/yum.repos.d/starship.repo https://copr.fedorainfracloud.org/cop
 RUN rpm-ostree install \
     starship
 
+RUN curl -o /etc/yum.repos.d/bottom.repo https://copr.fedorainfracloud.org/coprs/atim/bottom/repo/fedora-39/atim-bottom-fedora-39.repo
+RUN rpm-ostree install \
+    bottom
+
 RUN systemctl enable systemd-networkd
 RUN systemctl enable iwd
 
