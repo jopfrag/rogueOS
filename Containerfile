@@ -23,7 +23,7 @@ RUN rpm-ostree override remove \
     NetworkManager-openconnect-gnome \
     NetworkManager-libreswan \
     NetworkManager-libreswan-gnome \
-    Networkmanager-l2pt \
+    NetworkManager-l2pt \
     NetworkManager-l2tp-gnome
 
 RUN rpm-ostree install \
