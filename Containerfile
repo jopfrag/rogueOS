@@ -23,7 +23,7 @@ RUN rpm-ostree override remove \
     NetworkManager-openconnect-gnome \
     NetworkManager-libreswan \
     NetworkManager-libreswan-gnome \
-    NetworkManager-l2pt \
+    NetworkManager-l2tp \
     NetworkManager-l2tp-gnome
 
 RUN rpm-ostree install \
@@ -86,6 +86,8 @@ RUN rpm-ostree install \
 
 RUN systemctl enable systemd-networkd
 RUN systemctl enable iwd
+
+RUN curl -o /etc/google-chrome-stable_current_x86_64.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 COPY root/ /
 
