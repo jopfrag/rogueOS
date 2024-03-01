@@ -9,7 +9,9 @@ RUN rpm-ostree override remove \
     blueman \
     firewalld \
     lxqt-policykit \
-    sddm
+    sddm \
+    sway-config-fedora \
+    sddm-wayland-sway
 
 RUN rpm-ostree override remove \
     NetworkManager \
