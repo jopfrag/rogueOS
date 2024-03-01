@@ -3,7 +3,13 @@ FROM quay.io/fedora-ostree-desktops/sericea:39
 RUN rpm-ostree override remove \
     firefox \
     firefox-langpacks \
-    toolbox
+    toolbox \
+    uresourced \
+    foot \
+    blueman \
+    firewalld \
+    lxqt-policykit \
+    sddm
 
 RUN rpm-ostree override remove \
     NetworkManager \
