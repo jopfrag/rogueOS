@@ -28,7 +28,6 @@ RUN rpm-ostree override remove \
 RUN rpm-ostree override remove \
     NetworkManager \
     network-manager-applet \
-    NetworkManager-wwan \
     NetworkManager-wifi \
     NetworkManager-sstp \
     NetworkManager-sstp-gnome \
@@ -66,7 +65,8 @@ RUN rpm-ostree install \
     ripgrep \
     bat \
     eza \
-    zsh
+    zsh \
+    sshpass
 
 RUN curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo
 RUN rpm-ostree install \
