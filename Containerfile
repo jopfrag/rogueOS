@@ -11,13 +11,24 @@ RUN rpm-ostree override remove \
     lxqt-policykit \
     sddm \
     sway-config-fedora \
-    sddm-wayland-sway
+    sddm-wayland-sway \
+    ModemManager \
+    upower \
+    avahi \
+    libsane-hpaio \
+    NetworkManager-wwan \
+    hplip-libs \
+    hplip \
+    avahi-tools \
+    cups-ipptool \
+    nss-mdns \
+    spice-webdavd \
+    NetworkManager-bluetooth
 
 RUN rpm-ostree override remove \
     NetworkManager \
     network-manager-applet \
     NetworkManager-wwan \
-    NetworkManager-bluetooth \
     NetworkManager-wifi \
     NetworkManager-sstp \
     NetworkManager-sstp-gnome \
