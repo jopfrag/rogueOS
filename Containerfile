@@ -76,7 +76,7 @@ RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opens
 
 # enable systemd systems 
 RUN systemctl enable docker
-RUN systemctl enable opensnitch
+RUN systemctl enable opensnitchd
 RUN systemctl enable systemd-networkd
 RUN systemctl enable iwd
 
