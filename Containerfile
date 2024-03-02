@@ -43,11 +43,11 @@ RUN rpm-ostree install \
     sway \
     zsh
 
+COPY root/ /
+
 # RUN systemctl enable docker
 RUN systemctl enable systemd-networkd
 RUN systemctl enable iwd
-
-COPY root/ /
 
 RUN rm -rf /tmp/* /var/* \
     && rpm-ostree cleanup -m \
