@@ -38,6 +38,7 @@ RUN rpm-ostree install \
     ripgrep \
     tailscale \
     sshpass \
+    systemd-networkd \
     starship \
     sway \
     zsh
