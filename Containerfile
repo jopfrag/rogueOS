@@ -71,7 +71,7 @@ RUN rpm-ostree install \
 # install opensnitch
 RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opensnitch-1.6.5-1.x86_64.rpm \
     && wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5.1/opensnitch-ui-1.6.5.1-1.noarch.rpm \
-    && rpm-ostree install  opensnitch-ui-1.6.5.1-1.noarch.rpm \
+    && rpm-ostree install opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm \
     && rm opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm
 
 # enable systemd systems 
