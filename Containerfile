@@ -5,7 +5,6 @@ RUN rpm-ostree override remove \
     coreos-installer \
     coreos-installer-bootinfra \
     chrony \
-    ignition \
     moby-engine \
     NetworkManager \
     NetworkManager-tui \
