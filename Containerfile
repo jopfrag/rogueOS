@@ -2,10 +2,16 @@ FROM quay.io/fedora/fedora-coreos:stable
 
 RUN rpm-ostree override remove \
     console-login-helper-messages-issuegen \
+    coreos-installer \
+    coreos-installer-bootinfra \
+    chrony \
+    ignition \
+    moby-engine \
     NetworkManager \
     NetworkManager-tui \
     NetworkManager-team \
     NetworkManager-cloud-setup \
+    teamd \
     toolbox \
     zincati
 
@@ -36,13 +42,13 @@ RUN rpm-ostree install \
     sway \
     zsh
 
-RUN systemctl enable docker
+# RUN systemctl enable docker
 RUN systemctl enable systemd-networkd
 RUN systemctl enable iwd
 
 COPY root/ /
 
-RUN rm -rf /tmp/* /var/*
-RUN rpm-ostree cleanup -m
-RUN ostree container commit
-RUN mkdir -p /var/tmp && chmod -R 1777 /var/tmp
+RUN rm -rf /tmp/* /var/* \
+    && rpm-ostree cleanup -m \
+    && ostree container commit \
+    && mkdir -p /var/tmp && chmod -R 1777 /var/tmp
