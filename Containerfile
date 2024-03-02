@@ -26,12 +26,15 @@ RUN rpm-ostree install \
     bat \
     bottom \
     breeze-cursor-theme \
+    cockpit-ws \
+    cockpit-system \
     code \
     distrobox \
-    helix \
     eza \
-    iwd \
     gh \
+    helix \
+    iwd \
+    kernel-modules-extra \
     nautilus \
     numix-icon-theme-circle \
     nvme-cli \
