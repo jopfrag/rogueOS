@@ -20,7 +20,7 @@ RUN rpm-ostree override remove \
     sddm-wayland-sway \
     sway-config-fedora \
     toolbox \
-    uresourced
+    uresourced \
     NetworkManager \
     NetworkManager-bluetooth \
     NetworkManager-libreswan \
@@ -40,48 +40,51 @@ RUN rpm-ostree override remove \
     NetworkManager-wifi \
     NetworkManager-wwan
 
-# setup a bare min system
-RUN rpm-ostree install \
-    alacritty \
-    bat
-    bottom \
-    breeze-cursor-theme \
-    code \
-    distrobox \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-buildx-plugin \
-    docker-compose-plugin \
-    gh \
-    eza \
-    gh \
-    helix \
-    iwd \
-    nautilus \
-    numix-icon-theme-circle \
-    ripgrep \
-    starship \
-    tailscale \
-    zsh
+RUN rpm-ostree override remove \
+    dmenu 
 
-# install opensnitch
-RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opensnitch-1.6.5-1.x86_64.rpm \
-    && wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5.1/opensnitch-ui-1.6.5.1-1.noarch.rpm \
-    && rpm-ostree install  opensnitch-ui-1.6.5.1-1.noarch.rpm \
-    && rm opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm
+# # setup a bare min system
+# RUN rpm-ostree install \
+#     alacritty \
+#     bat
+#     bottom \
+#     breeze-cursor-theme \
+#     code \
+#     distrobox \
+#     docker-ce \
+#     docker-ce-cli \
+#     containerd.io \
+#     docker-buildx-plugin \
+#     docker-compose-plugin \
+#     gh \
+#     eza \
+#     gh \
+#     helix \
+#     iwd \
+#     nautilus \
+#     numix-icon-theme-circle \
+#     ripgrep \
+#     starship \
+#     tailscale \
+#     zsh
 
-# enable systemd systems 
-RUN systemctl enable docker
-RUN systemctl enable opensnitch
-RUN systemctl enable systemd-networkd
-RUN systemctl enable iwd
+# # install opensnitch
+# RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opensnitch-1.6.5-1.x86_64.rpm \
+#     && wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5.1/opensnitch-ui-1.6.5.1-1.noarch.rpm \
+#     && rpm-ostree install  opensnitch-ui-1.6.5.1-1.noarch.rpm \
+#     && rm opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm
 
-# override defaults settings
-COPY root/ /
+# # enable systemd systems 
+# RUN systemctl enable docker
+# RUN systemctl enable opensnitch
+# RUN systemctl enable systemd-networkd
+# RUN systemctl enable iwd
 
-# to be deleted after installing
-RUN curl -o /google-chrome-stable_current_x86_64.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+# # override defaults settings
+# COPY root/ /
+
+# # to be deleted after installing
+# RUN curl -o /google-chrome-stable_current_x86_64.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 # cleanup
 RUN rm -rf /tmp/* /var/* \
