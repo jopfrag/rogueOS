@@ -48,6 +48,22 @@ RUN rpm-ostree override remove \
 RUN rpm-ostree override remove \
     dmenu 
 
+# rpm fusion stuff
+# RUN rpm-ostree install \
+#     ffmpeg \
+#     gstreamer1-plugin-libav \
+#     gstreamer1-plugins-bad-free-extras \
+#     gstreamer1-plugins-bad-freeworld \
+#     gstreamer1-plugins-ugly \
+#     gstreamer1-vaapi \
+#     intel-media-driver 
+
+# install opensnitch
+RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opensnitch-1.6.5-1.x86_64.rpm \
+    && wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5.1/opensnitch-ui-1.6.5.1-1.noarch.rpm \
+    && rpm-ostree install opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm \
+    && rm opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm
+
 # setup a bare min system
 RUN rpm-ostree install \
     alacritty \
@@ -66,31 +82,37 @@ RUN rpm-ostree install \
     gh \
     helix \
     iwd \
+    just \
     nautilus \
     numix-icon-theme-circle \
     ripgrep \
     starship \
     tailscale \
+    tldr \
+    tokei \
     tuigreet \
     wofi \
     zoxide \
     zsh
 
-# rpm fusion stuff
-# RUN rpm-ostree install \
-#     ffmpeg \
-#     gstreamer1-plugin-libav \
-#     gstreamer1-plugins-bad-free-extras \
-#     gstreamer1-plugins-bad-freeworld \
-#     gstreamer1-plugins-ugly \
-#     gstreamer1-vaapi \
-#     intel-media-driver 
+# c toolchain
+RUN rpm-ostree install \
+    clang \
+    clang-analyzer \
+    clang-libs \
+    clang-tidy-sarif \
+    clang-tools-extra \
+    gdb \
+    meson \
+    mold \
+    lld \
+    lldb \
+    python3-clang \
+    python3-lldb
 
-# install opensnitch
-RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opensnitch-1.6.5-1.x86_64.rpm \
-    && wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5.1/opensnitch-ui-1.6.5.1-1.noarch.rpm \
-    && rpm-ostree install opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm \
-    && rm opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm
+# rust toolchain
+RUN rpm-ostree install \
+    rustup
 
 # enable systemd systems 
 RUN systemctl enable docker
