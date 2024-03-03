@@ -1,5 +1,9 @@
 FROM quay.io/fedora-ostree-desktops/sericea:39
 
+# rpm fusion repos
+RUN rpm-ostree install \
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
 # setup external dependencies
 RUN curl -o /etc/yum.repos.d/bottom.repo https://copr.fedorainfracloud.org/coprs/atim/bottom/repo/fedora-39/atim-bottom-fedora-39.repo
 RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
@@ -56,8 +60,8 @@ RUN rpm-ostree install \
     containerd.io \
     docker-buildx-plugin \
     docker-compose-plugin \
-    gh \
     eza \
+    fzf \
     gh \
     helix \
     iwd \
@@ -66,7 +70,20 @@ RUN rpm-ostree install \
     ripgrep \
     starship \
     tailscale \
+    tuigreet \
+    wofi \
+    zoxide \
     zsh
+
+# rpm fusion stuff
+RUN rpm-ostree install \
+    ffmpeg \
+    gstreamer1-plugin-libav \
+    gstreamer1-plugins-bad-free-extras \
+    gstreamer1-plugins-bad-freeworld \
+    gstreamer1-plugins-ugly \
+    gstreamer1-vaapi \
+    intel-media-driver 
 
 # install opensnitch
 RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opensnitch-1.6.5-1.x86_64.rpm \
@@ -84,7 +101,7 @@ RUN systemctl enable iwd
 COPY root/ /
 
 # to be deleted after installing
-RUN curl -o /google-chrome-stable_current_x86_64.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN curl -o /etc/google-chrome-stable_current_x86_64.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 # cleanup
 RUN rm -rf /tmp/* /var/* \
