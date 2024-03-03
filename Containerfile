@@ -2,7 +2,8 @@ FROM quay.io/fedora-ostree-desktops/sericea:39
 
 # rpm fusion repos
 RUN rpm-ostree install \
-    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 # setup external dependencies
 RUN curl -o /etc/yum.repos.d/bottom.repo https://copr.fedorainfracloud.org/coprs/atim/bottom/repo/fedora-39/atim-bottom-fedora-39.repo
@@ -76,14 +77,14 @@ RUN rpm-ostree install \
     zsh
 
 # rpm fusion stuff
-RUN rpm-ostree install \
-    ffmpeg \
-    gstreamer1-plugin-libav \
-    gstreamer1-plugins-bad-free-extras \
-    gstreamer1-plugins-bad-freeworld \
-    gstreamer1-plugins-ugly \
-    gstreamer1-vaapi \
-    intel-media-driver 
+# RUN rpm-ostree install \
+#     ffmpeg \
+#     gstreamer1-plugin-libav \
+#     gstreamer1-plugins-bad-free-extras \
+#     gstreamer1-plugins-bad-freeworld \
+#     gstreamer1-plugins-ugly \
+#     gstreamer1-vaapi \
+#     intel-media-driver 
 
 # install opensnitch
 RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opensnitch-1.6.5-1.x86_64.rpm \
