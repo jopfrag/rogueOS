@@ -85,6 +85,7 @@ RUN rpm-ostree install \
     just \
     nautilus \
     numix-icon-theme-circle \
+    power-profiles-daemon \
     ripgrep \
     starship \
     tailscale \
@@ -118,6 +119,7 @@ RUN rpm-ostree install \
 # enable systemd systems 
 RUN systemctl enable docker
 RUN systemctl enable opensnitch
+RUN systemctl enable power-profiles-daemon
 RUN systemctl enable systemd-networkd
 RUN systemctl enable iwd
 
