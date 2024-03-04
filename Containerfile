@@ -88,6 +88,7 @@ RUN rpm-ostree install \
     ripgrep \
     starship \
     tailscale \
+    tio \
     tldr \
     tokei \
     tuigreet \
