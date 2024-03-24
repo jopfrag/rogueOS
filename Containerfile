@@ -1,4 +1,4 @@
-FROM quay.io/fedora-ostree-desktops/sericea:39
+FROM quay.io/fedora-ostree-desktops/sericea:40
 
 # rpm fusion repos
 RUN rpm-ostree install \
@@ -89,6 +89,7 @@ RUN rpm-ostree install \
     ripgrep \
     starship \
     tailscale \
+    tuigreet \
     tio \
     tldr \
     tokei \
@@ -118,6 +119,7 @@ RUN rpm-ostree install \
 
 # enable systemd systems 
 RUN systemctl enable docker
+RUN systemctl enable greetd
 RUN systemctl enable opensnitch
 RUN systemctl enable power-profiles-daemon
 RUN systemctl enable systemd-networkd
