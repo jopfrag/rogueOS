@@ -53,7 +53,7 @@ jobs:
         run: |
           echo "IMAGE_NAME=rogue-os" >> $GITHUB_ENV
           echo "IMAGE_DESCRIPTION='personal image'" >> $GITHUB_ENV
-          echo "FEDORA_MAJOR_VERSION=39" >> $GITHUB_ENV
+          echo "FEDORA_MAJOR_VERSION=40" >> $GITHUB_ENV
           echo "BASE_IMAGE_URL=quay.io/fedora-ostree-desktops/sericea" >> $GITHUB_ENV
 
       - name: Get current version
