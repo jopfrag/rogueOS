@@ -1,4 +1,4 @@
-FROM quay.io/fedora-ostree-desktops/sericea:40
+FROM quay.io/fedora-ostree-desktops/silverblue:40
 
 # rpm fusion repos
 RUN rpm-ostree install \
@@ -14,49 +14,14 @@ RUN curl -o /etc/yum.repos.d/starship.repo https://copr.fedorainfracloud.org/cop
 
 # remove things we don't use from base image 
 RUN rpm-ostree override remove \
-    blueman \
     firefox \
     firefox-langpacks \
-    firewalld \
-    foot \
-    lxqt-policykit \
-    network-manager-applet \
-    sddm \
-    sddm-wayland-sway \
-    sway-config-fedora \
+    gnome-terminal \
+    gnome-terminal-nautilus \
+    gnome-tour \
+    gnome-shell-extension-background-logo \
     toolbox \
-    uresourced \
-    NetworkManager \
-    NetworkManager-bluetooth \
-    NetworkManager-libreswan \
-    NetworkManager-libreswan-gnome \
-    NetworkManager-l2tp \
-    NetworkManager-l2tp-gnome \
-    NetworkManager-pptp \
-    NetworkManager-pptp-gnome \
-    NetworkManager-openconnect \
-    NetworkManager-openconnect-gnome \
-    NetworkManager-openvpn \
-    NetworkManager-openvpn-gnome \
-    NetworkManager-sstp \
-    NetworkManager-sstp-gnome \
-    NetworkManager-vpnc \
-    NetworkManager-vpnc-gnome \
-    NetworkManager-wifi \
-    NetworkManager-wwan
-
-RUN rpm-ostree override remove \
-    dmenu 
-
-# rpm fusion stuff
-# RUN rpm-ostree install \
-#     ffmpeg \
-#     gstreamer1-plugin-libav \
-#     gstreamer1-plugins-bad-free-extras \
-#     gstreamer1-plugins-bad-freeworld \
-#     gstreamer1-plugins-ugly \
-#     gstreamer1-vaapi \
-#     intel-media-driver 
+    yelp
 
 # install opensnitch
 RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opensnitch-1.6.5-1.x86_64.rpm \
@@ -64,7 +29,29 @@ RUN wget https://github.com/evilsocket/opensnitch/releases/download/v1.6.5/opens
     && rpm-ostree install opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm \
     && rm opensnitch-1.6.5-1.x86_64.rpm opensnitch-ui-1.6.5.1-1.noarch.rpm
 
-# setup a bare min system
+# install gnome stuff
+RUN rpm-ostree install \
+    breeze-cursor-theme \
+    dconf-editor \
+    evince \
+    gnome-boxes \
+    gnome-calculator \
+    gnome-firmware \
+    gnome-shell-extension-appindicator \
+    gnome-shell-extension-pop-shell \
+    gnome-shell-extension-user-theme \
+    gnome-shell-extension-launch-new-instance \
+    gnome-shell-extension-just-perfection \
+    gnome-shell-extension-caffeine \
+    gnome-shell-extension-blur-my-shell \
+    gnome-tweaks \
+    gnome-disk-utility \
+    loupe \
+    nm-connection-editor-desktop \
+    numix-icon-theme-circle \
+    snapshot
+
+# install tools
 RUN rpm-ostree install \
     alacritty \
     bat \
@@ -81,24 +68,22 @@ RUN rpm-ostree install \
     fzf \
     gh \
     helix \
-    iwd \
     just \
-    nautilus \
-    numix-icon-theme-circle \
-    power-profiles-daemon \
     ripgrep \
     starship \
     tailscale \
-    tuigreet \
     tio \
     tldr \
     tokei \
-    tuigreet \
-    wofi \
     zoxide \
     zsh
 
-# c toolchain
+# install sway stuff
+RUN rpm-ostree install \
+    sway \
+    wofi
+
+# install c toolchain
 RUN rpm-ostree install \
     clang \
     clang-analyzer \
@@ -119,11 +104,7 @@ RUN rpm-ostree install \
 
 # enable systemd systems 
 RUN systemctl enable docker
-RUN systemctl enable greetd
 RUN systemctl enable opensnitch
-RUN systemctl enable power-profiles-daemon
-RUN systemctl enable systemd-networkd
-RUN systemctl enable iwd
 
 # override defaults settings
 COPY root/ /
