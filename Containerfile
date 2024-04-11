@@ -78,11 +78,6 @@ RUN rpm-ostree install \
     zoxide \
     zsh
 
-# install sway stuff
-RUN rpm-ostree install \
-    sway \
-    wofi
-
 # install c toolchain
 RUN rpm-ostree install \
     clang \
@@ -106,8 +101,15 @@ RUN rpm-ostree install \
 RUN systemctl enable docker
 RUN systemctl enable opensnitch
 
+
 # override defaults settings
 COPY root/ /
+
+# update font cache
+RUN fc-cache -f
+
+# create symlink 
+RUN ln -s /usr/bin/lldb-dap /usr/bin/lldb-vscode
 
 # to be deleted after installing
 RUN curl -o /etc/google-chrome-stable_current_x86_64.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
