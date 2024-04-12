@@ -85,6 +85,8 @@ RUN rpm-ostree install \
     clang-libs \
     clang-tidy-sarif \
     clang-tools-extra \
+    CUnit \
+    CUnit-devel \
     gdb \
     meson \
     mold \
