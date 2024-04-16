@@ -65,10 +65,12 @@ RUN rpm-ostree install \
     docker-buildx-plugin \
     docker-compose-plugin \
     eza \
+    fuse-sshfs \
     fzf \
     gh \
     helix \
     just \
+    mosh \
     ripgrep \
     starship \
     tailscale \
