@@ -101,6 +101,12 @@ RUN rpm-ostree install \
 RUN rpm-ostree install \
     rustup
 
+# go toolchain
+RUN rpm-ostree install \
+    go \
+    golang-honnef-tools \
+    golang-x-tools-*
+
 # enable systemd systems 
 RUN systemctl enable docker
 RUN systemctl enable opensnitch
