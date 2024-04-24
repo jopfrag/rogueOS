@@ -43,7 +43,7 @@ RUN rpm-ostree install \
     gnome-shell-extension-launch-new-instance \
     gnome-shell-extension-just-perfection \
     gnome-shell-extension-caffeine \
-    # gnome-shell-extension-blur-my-shell \
+    gnome-shell-extension-blur-my-shell \
     gnome-tweaks \
     gnome-disk-utility \
     loupe \
