@@ -107,6 +107,11 @@ RUN rpm-ostree install \
     golang-honnef-tools \
     golang-x-tools-*
 
+# python toolchain
+RUN rpm-ostree install \
+    ruff
+
+
 # enable systemd systems 
 RUN systemctl enable docker
 RUN systemctl enable opensnitch
