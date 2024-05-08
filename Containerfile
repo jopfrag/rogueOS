@@ -109,8 +109,8 @@ RUN rpm-ostree install \
 
 # python toolchain
 RUN rpm-ostree install \
+    pipx \
     ruff
-
 
 # enable systemd systems 
 RUN systemctl enable docker
