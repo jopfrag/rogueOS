@@ -123,7 +123,7 @@ COPY root/ /
 # update font cache
 RUN fc-cache -f
 
-RUN curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/bin/ollama &&\
+RUN curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/bin/ollama && \
     chmod +x /usr/bin/ollama
 
 # create symlink 
