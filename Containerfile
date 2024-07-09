@@ -127,7 +127,7 @@ RUN fc-cache -f
 RUN ln -s /usr/bin/lldb-dap /usr/bin/lldb-vscode
 
 # to be deleted after installing
-RUN curl -o /etc/google-chrome-stable.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN curl -o /etc/new-google-chrome-stable.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 # cleanup
 RUN rm -rf /tmp/* /var/* \
