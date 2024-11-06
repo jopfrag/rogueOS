@@ -12,17 +12,6 @@ RUN curl -o /etc/yum.repos.d/docker.repo https://download.docker.com/linux/fedor
 RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 RUN curl -o /etc/yum.repos.d/starship.repo https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-39/atim-starship-fedora-41.rep
 
-# remove things we don't use from base image 
-RUN rpm-ostree override remove \
-    firefox \
-    firefox-langpacks \
-    gnome-terminal \
-    gnome-terminal-nautilus \
-    gnome-tour \
-    gnome-shell-extension-background-logo \
-    toolbox \
-    yelp
-
 # install gnome stuff
 RUN rpm-ostree install \
     breeze-cursor-theme \
