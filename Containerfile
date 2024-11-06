@@ -97,8 +97,6 @@ RUN rpm-ostree install \
 
 # enable systemd systems 
 RUN systemctl enable docker
-RUN systemctl enable opensnitch
-
 
 # override defaults settings
 COPY root/ /
