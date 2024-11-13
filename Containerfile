@@ -10,7 +10,8 @@ RUN curl -o /etc/yum.repos.d/bottom.repo https://copr.fedorainfracloud.org/coprs
 RUN curl -o /etc/yum.repos.d/code.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 RUN curl -o /etc/yum.repos.d/docker.repo https://download.docker.com/linux/fedora/docker-ce.repo
 RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-RUN curl -o /etc/yum.repos.d/starship.repo https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-39/atim-starship-fedora-41.rep
+RUN curl -o /etc/yum.repos.d/starship.repo https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-39/atim-starship-fedora-41.repo
+RUN curl -o /etc/yum.repos.d/chromium.repo https://copr.fedorainfracloud.org/coprs/wojnilowicz/ungoogled-chromium/repo/fedora-41/wojnilowicz-ungoogled-chromium-fedora-41.repo
 
 # install gnome stuff
 RUN rpm-ostree install \
@@ -95,6 +96,9 @@ RUN rpm-ostree install \
     pipx \
     ruff
 
+RUN rpm-ostree install \
+    ungoogled-chromium
+
 # enable systemd systems 
 RUN systemctl enable docker
 
@@ -106,9 +110,6 @@ RUN fc-cache -f
 
 # create symlink 
 RUN ln -s /usr/bin/lldb-dap /usr/bin/lldb-vscode
-
-# to be deleted after installing
-RUN curl -o /etc/new-google-chrome-stable-5.rpm https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 # cleanup
 RUN rm -rf /tmp/* /var/* \
