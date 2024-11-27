@@ -13,6 +13,13 @@ RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fe
 RUN curl -o /etc/yum.repos.d/starship.repo https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-39/atim-starship-fedora-41.repo
 RUN curl -o /etc/yum.repos.d/chromium.repo https://copr.fedorainfracloud.org/coprs/wojnilowicz/ungoogled-chromium/repo/fedora-41/wojnilowicz-ungoogled-chromium-fedora-41.repo
 
+# remove things we don't use from base image 
+RUN rpm-ostree override remove \
+    firefox \
+    firefox-langpacks \
+    toolbox \
+    yelp
+
 # install gnome stuff
 RUN rpm-ostree install \
     breeze-cursor-theme \
