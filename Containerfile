@@ -12,7 +12,6 @@ RUN curl -o /etc/yum.repos.d/docker.repo https://download.docker.com/linux/fedor
 RUN curl -o /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 RUN curl -o /etc/yum.repos.d/starship.repo https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-39/atim-starship-fedora-41.repo
 RUN curl -o /etc/yum.repos.d/chromium.repo https://copr.fedorainfracloud.org/coprs/wojnilowicz/ungoogled-chromium/repo/fedora-41/wojnilowicz-ungoogled-chromium-fedora-41.repo
-RUN curl -o /etc/webex.rpm https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm
 
 # remove things we don't use from base image 
 RUN rpm-ostree override remove \
@@ -106,11 +105,6 @@ RUN rpm-ostree install \
 
 RUN rpm-ostree install \
     ungoogled-chromium
-
-RUN rpm-ostree install \
-    ungoogled-chromium
-
-RUN rpm-ostree install /etc/webex.rpm
 
 # enable systemd systems 
 RUN systemctl enable docker
