@@ -1,3 +1,3 @@
-# rogue-os
+# rogue os
 
-## VERSION 40 !
+## VERSION 41 !
