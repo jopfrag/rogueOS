@@ -107,7 +107,7 @@ RUN rpm-ostree install \
     ungoogled-chromium
 
 # enable systemd systems 
-RUN systemctl enable docker
+# RUN systemctl enable docker
 
 # override defaults settings
 COPY root/ /
