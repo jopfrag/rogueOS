@@ -97,9 +97,6 @@ RUN rpm-ostree install \
     pipx \
     ruff
 
-RUN rpm-ostree install \
-    ungoogled-chromium
-
 # enable systemd systems 
 # RUN systemctl enable docker
 
