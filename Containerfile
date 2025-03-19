@@ -88,10 +88,6 @@ RUN rpm-ostree install \
     python3-clang \
     python3-lldb
 
-# rust toolchain
-RUN rpm-ostree install \
-    rustup
-
 # python toolchain
 RUN rpm-ostree install \
     pipx \
